@@ -7,7 +7,7 @@
         /hbnb: display HBNB
 """
 from flask import Flask
-from flash import render_template
+from flask import render_template
 
 app = Flask(__name__)
 
