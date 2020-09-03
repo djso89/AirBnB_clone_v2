@@ -12,12 +12,12 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route('/', strict_slashes=false)
+@app.route('/', strict_slashes=False)
 def hello():
     """ display Hello HBNB!"""
     return ("Hello HBNB!")
 
-@app.route('/hbnb', strict_slashes=false)
+@app.route('/hbnb', strict_slashes=False)
 def hello_hbnb():
     """ display HBNB """
     return ("Hello HBNB!")
