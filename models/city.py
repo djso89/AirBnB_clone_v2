@@ -2,19 +2,25 @@
 """
 This module defines class City that inherits from BaseModel
 """
+import models
 from models.base_model import BaseModel, Base
+from os import getenv
+import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey
-from models.state import State
 from sqlalchemy.orm import relationship
 
 
 class City(BaseModel, Base):
-    """
-    Initialize class City with attributes
-        state_id: (str) refers to State.id
-        name: (str) name of the city
-    """
-    __tablename__ = "cities"
-    state_id = Column(String(60), ForeignKey("states.id"), nullable=False)
-    name = Column(String(128), nullable=False)
-    places = relationship("Place", backref="cities", cascade="all, delete")
+    """Representation of city """
+    if models.storage_t == "db":
+        __tablename__ = 'cities'
+        state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
+        name = Column(String(128), nullable=False)
+        places = relationship("Place", backref="cities")
+    else:
+        state_id = ""
+        name = ""
+
+    def __init__(self, *args, **kwargs):
+        """initializes city"""
+        super().__init__(*args, **kwargs)
